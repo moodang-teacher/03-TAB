@@ -1,18 +1,29 @@
 $(function () {
   // 대상을 변수에 저장
   const $body = $('body');
-
-  // 테스트 : body에 배경이미지 넣기
-  // $body.css({
-  //   background: 'url(img/blackpink01.jpg) no-repeat 0 0 /cover',
-  // });
-
   const $tabMenu = $('.tab-menu > li');
   const $tabContent = $('.tab-con-item');
 
-  // 배경이미지를 배열에 저장
-  const bgArr = ['blackpink01.jpg', 'blackpink02.jpg', 'blackpink03.jpg'];
-  console.log(bgArr[2]);
+  // 배열에 이미지와 텍스트 정보를 저장
+  const bgArr = [
+    {
+      pic: 'blackpink01.jpg',
+      title: '지수가 제일 예뻐요',
+    },
+    {
+      pic: 'blackpink02.jpg',
+      title: '지수가 정말 예뻐요',
+    },
+    {
+      pic: 'blackpink03.jpg',
+      title: '지수가 항상 예뻐요',
+    },
+  ];
+
+  console.log(bgArr);
+  console.log(bgArr[1]);
+  console.log(bgArr[1].title);
+  console.log(bgArr[1]['title']);
 
   // 초기화
   let idx = 0;
@@ -26,9 +37,11 @@ $(function () {
 
     // 배경이미지 적용
     $body.css({
-      // background: 'url(img/' + bgArr[index] + ') no-repeat 0 0 /cover',
-      background: `url(img/${bgArr[index]}) no-repeat 0 0 /cover`,
+      background: `url(img/${bgArr[index].pic}) no-repeat 0 0 /cover`,
     });
+
+    // 탭 콘텐츠의 제목을 수정
+    $tabContent.eq(index).find('h2').text(bgArr[index].title);
   }
 
   $tabMenu.on('click', function (e) {
